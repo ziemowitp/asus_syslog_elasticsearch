@@ -1,0 +1,22 @@
+version: '2.2'
+services:
+
+  syslog:
+    image: syslog:latest
+    container_name: syslog
+    environment:
+      - discovery.type=single-node
+      - ES_HOST=192.168.6.40
+      - ES_PORT=9200
+      - ES_USER=elastic
+      - ES_PASS=changeme
+    ports:
+      - 514:514
+    networks:
+      default:
+        ipv4_address: 192.168.7.42
+
+networks:
+  default:
+    external:
+      name: util
